@@ -1,3 +1,10 @@
+body{
+    background-color: white;
+}
+.nav-wrapper{
+    background-color: green;
+}
+
 .main-icons{
     margin: auto;
     margin-top: 11em;
@@ -7,4 +14,20 @@
 .main-icons i{
     font-size: 20em;
     margin: auto;
+}
+
+table{
+    margin: 0px 10px;
+}
+
+.material-icons{
+    color: purple;
+}
+.icons-text{
+    font-weight: bold;
+    color: teal;
+}
+
+.icon-links:hover{
+  filter: brightness(65%);
 }
