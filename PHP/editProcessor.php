@@ -4,7 +4,7 @@
   }
   include "database.php";
   $prodID = $_GET['prod'];
-  $sql = "SELECT PartID, Quanity, Brand, Series, Cores, ClockRate, BarCode from processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
+  $sql = "SELECT PartID, Quanity, Brand, Model, Cores, ClockRate, BarCode from processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
   $qry = mysqli_query($db, $sql);
  ?>
 <!DOCTYPE html>
@@ -25,7 +25,7 @@
 		Brand
 	    </th>
 		<th>
-		Series
+		Model
 	    </th>
 		<th>
 		Cores
@@ -45,7 +45,7 @@
     <?php
       $rs = mysqli_fetch_array ($qry);
       extract($rs);
-      print "<td>${Brand}</td><td>${Series}</td><td>${Cores}</td><td>${ClockRate}</td><td>${BarCode}</td><td>
+      print "<td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${BarCode}</td><td>
       <input type='text' value='${Quanity}' name='qty'
       </td>";
 
