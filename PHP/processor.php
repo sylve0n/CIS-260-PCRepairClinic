@@ -70,7 +70,7 @@
 		  print "<tr>";
 		  print "<td>${Quanity}</td>";
           print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Series}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
-          print "<td><a href='editPart.php?prod=${PartID}'>Edit</a></td>";
+          print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
 

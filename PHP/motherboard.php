@@ -73,7 +73,7 @@
 		  print "<tr>";
 		  print "<td>${Quanity}</td>";
           print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Revision}</td><td>${FormFactor}</td><td>${CpuBrand}</td><td>${Socket}</td><td>${Chipset}</td><td>${BarCode}</td><td>${PartNumber}</td>";
-          print "<td><a href='editPart.php?prod=${PartID}'>Edit</a></td>";
+          print "<td><a href='editMotherBoard.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
 
