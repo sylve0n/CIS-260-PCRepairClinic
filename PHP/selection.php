@@ -1,6 +1,6 @@
 <form method="post" action="index.php">
 <select name ="categories">
-<option>Select Item</option>
+<option>Select Category</option>
 
 <?php
 		include "database.php";
@@ -13,5 +13,11 @@
 		}
 ?>	
 	</select>
+	<select name="choices">
+	  <option>Search Method</option>
+	  <option value="partnumber">Part Number</option>
+	  <option value="bar_codes1">Barcode</option>
+	</select>
+	<input type="text" name="barcodes"/>
 	<input type="submit" value="submit"/>	
 </form>

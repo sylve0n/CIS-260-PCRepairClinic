@@ -8,10 +8,9 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update memory SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Type = ?, Rate = ?, StandardName = ?, ModuleName = ?, IsLowVoltage = ?, PartNumber= ? WHERE PartID = ?");
-        $sql->bind_param("iiissssisi",$qty, $isnew, $tested, $brand, $type, $rate, $mname, $voltage, $pnum, $partid);
+        $sql = $db->prepare("Update processor SET Quanity = ? IsNew, = ? IsTested, = ? Brand, = ? Model, = ?, Cores = ?, ClockRate = ?, Socket = ?, CodeName = ?, PartNumber = ? WHERE PartID = ?");
+        $sql->bind_param("iiississssi", $qty, $isnew, $tested, $brand, $model, $cores, $clockrate, $socket, $cname, $pnum, $partid);
         $sql->execute();
-		echo $sql;
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
         }else{
@@ -23,10 +22,10 @@
   </head>
   <body>
     <?php print "${status}";?>
-       <table width="100%">
+    <table width="100%">
     <tr>
       <th>
-		Quantity
+      Quantity
       </th>
       <th>
         Is New
@@ -37,22 +36,22 @@
         Brand
       </th>
 	  <th>
-		Type
+		Model
 	  </th>
 	  <th>
-		Rate
+		Cores
 	  </th>
 	  <th>
-		Standard Name
+		Clock Rate
 	  </th>
 	  <th>
-		Module Name
+		Socket
 	  </th>
 	  <th>
-		Is Low Voltage
+		Code Name
 	  </th>
 	  <th>
-		Barcode
+		BarCode
 	  </th>
 	  <th>
 		Part Number
@@ -62,15 +61,16 @@
 
     <?php
         //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Type, Rate, StandardName, ModuleName, IsLowVoltage, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Cores, ClockRate, Socket, CodeName, BarCode, PartNumber FROM processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
         $qry = mysqli_query($db, $sql);
         
 
         while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
 		  print "<tr>";
-          print "<td>${Quanity}</td><td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Type}</td><td>${Rate}</td><td>${StandardName}</td><td>${ModuleName}</td><td>${IsLowVoltage}</td><td>${BarCode}</td><td>${PartNumber}</td>";
-          print "<td><a href='editMemory.php?prod=${PartID}'>Edit</a></td>";
+		  print "<td>${Quanity}</td>";
+          print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
+          print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
 
