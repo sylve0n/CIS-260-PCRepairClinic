@@ -4,12 +4,13 @@
     <meta charset="utf-8">
     <title>View Products</title>
     <?php
+	  $barcodes = "";
 	  $status = "";
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update motherboard SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Model = ?, FormFactor = ?, CpuBrand = ?, Socket = ?, Chipset = ?, BarCode = ?, PartNumber = ? WHERE PartID = ?");
-        $sql->bind_param("iiissssssisi", $qty, $new, $test, $brand, $model, $factor, $cpu, $socket, $chipset, $barcode, $partnumber, $partid);
+	  $sql = $db->prepare("SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE BarCode = ${barcodes}");
+        $sql->bind_param("ii", $qty, $partid);
         $sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
@@ -64,7 +65,7 @@
 
     <?php
         //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard WHERE BarCode = ${barcodes} join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
         $qry = mysqli_query($db, $sql);
         
 

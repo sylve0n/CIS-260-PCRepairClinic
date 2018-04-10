@@ -4,7 +4,7 @@
   }
   include "database.php";
   $prodID = $_GET['prod'];
-  $sql = "SELECT PartID, Quanity, Brand, Model, Cores, ClockRate, BarCode from processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
+  $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Cores, ClockRate, Socket, CodeName, BarCode ,PartNumber from processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
   $qry = mysqli_query($db, $sql);
  ?>
 <!DOCTYPE html>
@@ -22,6 +22,15 @@
     <table width="60%">
 	<tr>
 	    <th>
+		Quanity
+	    </th>
+		<th>
+		Is New
+	    </th>
+		<th>
+		Is Tested
+	    </th>
+		<th>
 		Brand
 	    </th>
 		<th>
@@ -31,13 +40,16 @@
 		Cores
 	    </th>
 		<th>
-		ClockRate
+		Clockrate
 	    </th>
 		<th>
-		Bar Code
+		Socket
 	    </th>
 		<th>
-		Quantity
+		Code Name
+	    </th>
+		<th>
+		Part Number
 	    </th>
 	  </tr>
 
@@ -45,9 +57,11 @@
     <?php
       $rs = mysqli_fetch_array ($qry);
       extract($rs);
-      print "<td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${BarCode}</td><td>
-      <input type='text' value='${Quanity}' name='qty'
-      </td>";
+	   print "<td><input type='text' value='${Quanity}' name='qty'/></td><td><input type='text' value='${IsNew}' name='isnew' size='1'/></td><td><input type='text' value='${IsTested}' name='tested' size='1'/></td>
+	   <td><input type='text' value ='${Brand}' name='brand' size='6'/></td><td><input type='text' value='${Model}' name='type'/></td><td><input type='text' value='${Cores}' name='rate' size='10'/></td>
+	  <td><input type='text' value='${ClockRate}' name='mname'/></td><td><input type='text' value='${Socket}' name='socket' size='10'/></td><td><input type='text' value='${CodeName}' name='cname'/></td><td><input type='text' value='${PartNumber}' name='pnum'/></td>";
+
+
 
 
     ?>

@@ -4,13 +4,12 @@
     <meta charset="utf-8">
     <title>View Products</title>
     <?php
-    $status = "";
-      include "imports.php";
+	  $status = "";
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update processor SET Quanity = ? WHERE PartID = ?");
-        $sql->bind_param("ii", $qty, $partid);
+        $sql = $db->prepare("Update processor SET Quanity = ? IsNew, = ? IsTested, = ? Brand, = ? Model, = ?, Cores = ?, ClockRate = ?, Socket = ?, CodeName = ?, PartNumber = ? WHERE PartID = ?");
+        $sql->bind_param("iiissiisssi", $qty, $isnew, $tested, $brand, $model, $cores, $clockrate, $socket, $cname, $pnum, $partid);
         $sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
@@ -23,7 +22,7 @@
   </head>
   <body>
     <?php print "${status}";?>
-    <table class="highlight responsive-table" id="processors">
+    <table width="100%">
     <tr>
       <th>
       Quantity
@@ -70,13 +69,8 @@
           extract ($rs);
 		  print "<tr>";
 		  print "<td>${Quanity}</td>";
-<<<<<<< Updated upstream
           print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
-=======
-          print "<td id=\"isNew\">${IsNew}</td><td class=\"yesNo\">${IsTested}</td><td>${Brand}</td><td>${Series}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td class=\"barcode\">${BarCode}</td><td>${PartNumber}</td>";
-          print "<td><a href='editPart.php?prod=${PartID}'>Edit</a></td>";
->>>>>>> Stashed changes
           print "</tr>";
         }
 
