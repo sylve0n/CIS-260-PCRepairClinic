@@ -8,9 +8,10 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update memory SET Quanity = ? WHERE PartID = ?");
-        $sql->bind_param("ii", $qty, $partid);
+        $sql = $db->prepare("Update memory SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Type = ?, Rate = ?, StandardName = ?, ModuleName = ?, IsLowVoltage = ?, PartNumber= ? WHERE PartID = ?");
+        $sql->bind_param("iiissssisi",$qty, $isnew, $tested, $brand, $type, $rate, $mname, $voltage, $pnum, $partid);
         $sql->execute();
+		echo $sql;
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
         }else{
@@ -25,7 +26,7 @@
        <table width="100%">
     <tr>
       <th>
-      Quantity
+		Quantity
       </th>
       <th>
         Is New
@@ -68,8 +69,7 @@
         while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
 		  print "<tr>";
-		  print "<td>${Quanity}</td>";
-          print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Type}</td><td>${Rate}</td><td>${StandardName}</td><td>${ModuleName}</td><td>${IsLowVoltage}</td><td>${BarCode}</td><td>${PartNumber}</td>";
+          print "<td>${Quanity}</td><td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Type}</td><td>${Rate}</td><td>${StandardName}</td><td>${ModuleName}</td><td>${IsLowVoltage}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editMemory.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }

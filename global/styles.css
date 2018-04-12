@@ -1,5 +1,7 @@
 body{
     background-color: white;
+    margin: auto;
+    text-align: center;
 }
 
 /*nav styles*/
@@ -42,6 +44,14 @@ table{
 }
 select{
     width: 80%; 
+}
+
+/* editing fields */
+input[type="text"]{
+    color: grey;
+}
+input[type="text"]:focus{
+    color: black;
 }
 /* Barcode */
 

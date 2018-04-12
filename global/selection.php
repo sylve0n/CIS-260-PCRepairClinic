@@ -1,3 +1,4 @@
+<?php include "imports.php"; ?>
 <form method="post" action="index.php">
 	<h3 class="center-align">Search For Parts</h3>
 	<h5 class="center-align">Select a Category:</h5>

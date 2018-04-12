@@ -8,8 +8,8 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update processor SET Quanity = ? WHERE PartID = ?");
-        $sql->bind_param("ii", $qty, $partid);
+        $sql = $db->prepare("Update processor SET Quanity = ? IsNew, = ? IsTested, = ? Brand, = ? Model, = ?, Cores = ?, ClockRate = ?, Socket = ?, CodeName = ?, PartNumber = ? WHERE PartID = ?");
+        $sql->bind_param("iiississssi", $qty, $isnew, $tested, $brand, $model, $cores, $clockrate, $socket, $cname, $pnum, $partid);
         $sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
@@ -67,8 +67,8 @@
 
         while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
-		      print "<tr>";
-		      print "<td>${Quanity}</td>";
+		  print "<tr>";
+		  print "<td>${Quanity}</td>";
           print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";

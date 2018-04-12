@@ -5,11 +5,12 @@
     <title>View Products</title>
     <?php
 	  $status = "";
-      include "database.php";
+      include "../global/database.php";
+      include "../global/imports.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update motherboard SET Quanity = ? WHERE PartID = ?");
-        $sql->bind_param("ii", $qty, $partid);
+        $sql = $db->prepare("Update processor SET Quanity = ? IsNew, = ? IsTested, = ? Brand, = ? Model, = ?, Cores = ?, ClockRate = ?, Socket = ?, CodeName = ?, PartNumber = ? WHERE PartID = ?");
+        $sql->bind_param("iiissiisssi", $qty, $isnew, $tested, $brand, $model, $cores, $clockrate, $socket, $cname, $pnum, $partid);
         $sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
@@ -22,7 +23,7 @@
   </head>
   <body>
     <?php print "${status}";?>
-        <table width="100%">
+    <table width="100%">
     <tr>
       <th>
       Quantity
@@ -39,19 +40,16 @@
 		Model
 	  </th>
 	  <th>
-		Revision
+		Cores
 	  </th>
 	  <th>
-		Form Factor
-	  </th>
-	   <th>
-		CPU Brand
+		Clock Rate
 	  </th>
 	  <th>
 		Socket
 	  </th>
 	  <th>
-		Chipset
+		Code Name
 	  </th>
 	  <th>
 		BarCode
@@ -64,16 +62,15 @@
 
     <?php
         //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Cores, ClockRate, Socket, CodeName, BarCode, PartNumber FROM processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
         $qry = mysqli_query($db, $sql);
-        
 
-        while ($rs = mysqli_fetch_array($qry)){
+        while ($rs = mysqli_fetch_array(mysqli_query($db, $sql))){
           extract ($rs);
 		  print "<tr>";
 		  print "<td>${Quanity}</td>";
-          print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Revision}</td><td>${FormFactor}</td><td>${CpuBrand}</td><td>${Socket}</td><td>${Chipset}</td><td>${BarCode}</td><td>${PartNumber}</td>";
-          print "<td><a href='editMotherBoard.php?prod=${PartID}'>Edit</a></td>";
+          print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
+          print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
 

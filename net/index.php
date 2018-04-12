@@ -4,7 +4,8 @@
 <head>
 
 <?php
-	include "clinic-header.php";
+	include "net-header.php";
+	include "../global/imports.php";
 	$selection = "";
 	if (isset($_POST['categories'])){
 		//echo ("true");
@@ -15,19 +16,18 @@
 ?>
 	
 	<?php
-		include "imports.php";
-		include "database.php";
+		include "../global/database.php";
 		$sql = "select * from category";
 		$qry = mysqli_query($db, $sql);
 		
 		$rs = mysqli_fetch_array($qry);
 		switch($selection){
 			case "":
-			include "selection.php";
+			include "../global/selection.php";
 			break;
 
 			case "0":
-			include "selection.php";
+			include "../global/selection.php";
 			break;
 			
 			case "1":
@@ -50,6 +50,6 @@
 <body>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
 	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-	<script src="script.js"></script>
+	<script src="../global/script.js"></script>
 </body>
 </html>

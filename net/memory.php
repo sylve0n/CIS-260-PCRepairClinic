@@ -5,7 +5,7 @@
     <title>View Products</title>
     <?php
 	  $status = "";
-      include "database.php";
+      include "../global/database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
         $sql = $db->prepare("Update memory SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Type = ?, Rate = ?, StandardName = ?, ModuleName = ?, IsLowVoltage = ?, PartNumber= ? WHERE PartID = ?");
