@@ -16,7 +16,7 @@
   <body>
 
     <h2>Edit Part</h2>
-    <form method="post" action="processor.php">
+    <form method="post" action="motherboard.php">
 
 
     <table width="60%">

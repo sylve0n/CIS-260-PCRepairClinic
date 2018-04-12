@@ -58,8 +58,8 @@
       $rs = mysqli_fetch_array ($qry);
       extract($rs);
 	   print "<td><input type='text' value='${Quanity}' name='qty'/></td><td><input type='text' value='${IsNew}' name='isnew' size='1'/></td><td><input type='text' value='${IsTested}' name='tested' size='1'/></td>
-	   <td><input type='text' value ='${Brand}' name='brand' size='6'/></td><td><input type='text' value='${Model}' name='type'/></td><td><input type='text' value='${Cores}' name='rate' size='10'/></td>
-	  <td><input type='text' value='${ClockRate}' name='mname'/></td><td><input type='text' value='${Socket}' name='socket' size='10'/></td><td><input type='text' value='${CodeName}' name='cname'/></td><td><input type='text' value='${PartNumber}' name='pnum'/></td>";
+	   <td><input type='text' value ='${Brand}' name='brand' size='6'/></td><td><input type='text' value='${Model}' name='model'/></td><td><input type='text' value='${Cores}' name='cores' size='10'/></td>
+	  <td><input type='text' value='${ClockRate}' name='rate'/></td><td><input type='text' value='${Socket}' name='socket' size='10'/></td><td><input type='text' value='${CodeName}' name='cname'/></td><td><input type='text' value='${PartNumber}' name='pnum'/></td>";
 
 
 

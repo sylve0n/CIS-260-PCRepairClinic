@@ -8,10 +8,12 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update memory SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Type = ?, Rate = ?, StandardName = ?, ModuleName = ?, IsLowVoltage = ?, PartNumber= ? WHERE PartID = ?");
-        $sql->bind_param("iiissssisi",$qty, $isnew, $tested, $brand, $type, $rate, $mname, $voltage, $pnum, $partid);
+        $sql = $db->prepare("Update memory SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Size = ?, Type = ?, Rate = ?, StandardName = ?, ModuleName = ?, IsLaptop = ?, IsLowVoltage = ? WHERE PartID = ?");
+        $sql->bind_param("iiissssssiii",$qty, $isnew, $tested, $brand, $size, $type, $rate, $sname, $mname, $laptop, $voltage, $partid);
         $sql->execute();
-		echo $sql;
+		$sql = $db->prepare("Update part_number set PartNumber = ? Where PartNumberID = ?");
+		$sql->bind_param("si", $pnum1, $partid);
+		$sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
         }else{
@@ -37,6 +39,9 @@
         Brand
       </th>
 	  <th>
+		Size
+	  </th>
+	  <th>
 		Type
 	  </th>
 	  <th>
@@ -47,6 +52,9 @@
 	  </th>
 	  <th>
 		Module Name
+	  </th>
+	  <th>
+		Is Laptop
 	  </th>
 	  <th>
 		Is Low Voltage
@@ -62,14 +70,14 @@
 
     <?php
         //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Type, Rate, StandardName, ModuleName, IsLowVoltage, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Size, Type, Rate, StandardName, ModuleName, IsLaptop, IsLowVoltage, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
         $qry = mysqli_query($db, $sql);
         
 
         while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
 		  print "<tr>";
-          print "<td>${Quanity}</td><td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Type}</td><td>${Rate}</td><td>${StandardName}</td><td>${ModuleName}</td><td>${IsLowVoltage}</td><td>${BarCode}</td><td>${PartNumber}</td>";
+          print "<td>${Quanity}</td><td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Size}</td><td>${Type}</td><td>${Rate}</td><td>${StandardName}</td><td>${ModuleName}</td><td>${IsLaptop}</td><td>${IsLowVoltage}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editMemory.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }

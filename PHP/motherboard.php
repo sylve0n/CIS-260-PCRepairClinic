@@ -8,9 +8,13 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update motherboard SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Model = ?, FormFactor = ?, CpuBrand = ?, Socket = ?, Chipset = ?, BarCode = ?, PartNumber = ? WHERE PartID = ?");
-        $sql->bind_param("iiissssssisi", $qty, $new, $test, $brand, $model, $factor, $cpu, $socket, $chipset, $barcode, $partnumber, $partid);
+		print_r($_POST);
+        $sql = $db->prepare("Update motherboard SET Quanity = ?, IsNew = ?, IsTested = ?, Brand = ?, Model = ?, FormFactor = ?, CpuBrand = ?, Socket = ?, Chipset = ? WHERE PartID = ?");
+        $sql->bind_param("iiissssssi", $qty, $new, $test, $brand, $model, $factor, $cpu, $socket, $chipset, $partid);
         $sql->execute();
+		$sql = $db->prepare("Update part_number set PartNumber = ? Where PartNumberID = ?");
+		$sql->bind_param("si", $partnumber, $partid);
+		$sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
         }else{
@@ -71,8 +75,7 @@
         while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
 		  print "<tr>";
-		  print "<td>${Quanity}</td>";
-          print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Revision}</td><td>${FormFactor}</td><td>${CpuBrand}</td><td>${Socket}</td><td>${Chipset}</td><td>${BarCode}</td><td>${PartNumber}</td>";
+          print "<td>${Quanity}</td><td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Revision}</td><td>${FormFactor}</td><td>${CpuBrand}</td><td>${Socket}</td><td>${Chipset}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editMotherBoard.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
