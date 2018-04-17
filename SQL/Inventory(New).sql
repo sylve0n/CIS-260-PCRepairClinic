@@ -24,8 +24,8 @@ USE `inventory` ;
 DROP TABLE IF EXISTS `inventory`.`bar_code` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`bar_code` (
-  `BarCodeID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each bar code.',
-  `BarCode` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Bar Code.',
+  `BarCodeID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each bar code.',
+  `BarCode` CHAR(16) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Bar Code.',
   `Timestamp` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
   PRIMARY KEY (`BarCodeID`))
 ENGINE = InnoDB
@@ -43,8 +43,8 @@ CREATE UNIQUE INDEX `BarCode_UNIQUE` ON `inventory`.`bar_code` (`BarCode` ASC);
 DROP TABLE IF EXISTS `inventory`.`category` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`category` (
-  `CategoryID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each category.',
-  `CategoryName` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Category name.',
+  `CategoryID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each category.',
+  `CategoryName` CHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Category name.',
   `Timestamp` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
   `IsActive` TINYINT NOT NULL DEFAULT 1,
   PRIMARY KEY (`CategoryID`))
@@ -63,19 +63,19 @@ CREATE UNIQUE INDEX `CategoryName_UNIQUE` ON `inventory`.`category` (`CategoryNa
 DROP TABLE IF EXISTS `inventory`.`memory` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`memory` (
-  `PartID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part.',
-  `BarCodeID` INT(11) NOT NULL,
-  `CategoryID` INT(11) NOT NULL,
+  `PartID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part.',
+  `BarCodeID` INT(16) NOT NULL,
+  `CategoryID` INT(16) NOT NULL,
   `TimeStamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
-  `Quanity` INT(11) NOT NULL,
+  `Quanity` INT(16) NOT NULL,
   `IsNew` TINYINT NOT NULL DEFAULT 0,
   `IsTested` TINYINT NOT NULL DEFAULT 0,
-  `Brand` VARCHAR(15) NOT NULL,
-  `Size` VARCHAR(15) NOT NULL,
-  `Type` VARCHAR(15) NOT NULL,
-  `Rate` VARCHAR(15) NOT NULL,
-  `StandardName` VARCHAR(15) NOT NULL,
-  `ModuleName` VARCHAR(15) NOT NULL,
+  `Brand` CHAR(50) NOT NULL,
+  `Size` CHAR(25) NOT NULL,
+  `Type` CHAR(25) NOT NULL,
+  `Rate` CHAR(25) NOT NULL,
+  `StandardName` CHAR(50) NOT NULL,
+  `ModuleName` CHAR(50) NOT NULL,
   `IsLaptop` TINYINT NOT NULL DEFAULT 0,
   `IsLowVoltage` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`PartID`))
@@ -94,20 +94,20 @@ CREATE UNIQUE INDEX `BarCodeID_UNIQUE` ON `inventory`.`memory` (`BarCodeID` ASC)
 DROP TABLE IF EXISTS `inventory`.`motherboard` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`motherboard` (
-  `PartID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique number assigned to each record.',
-  `BarCodeID` INT(11) NOT NULL,
-  `CategoryID` INT(11) NOT NULL,
+  `PartID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique number assigned to each record.',
+  `BarCodeID` INT(16) NOT NULL,
+  `CategoryID` INT(16) NOT NULL,
   `TimeStamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
-  `Quanity` INT(11) NOT NULL COMMENT 'Quanity on hand.',
+  `Quanity` INT(16) NOT NULL COMMENT 'Quanity on hand.',
   `IsNew` TINYINT NOT NULL DEFAULT 0 COMMENT 'Motherboard is / is not new.',
   `IsTested` TINYINT NOT NULL DEFAULT 0 COMMENT 'Motherboard has / has not tested good.',
-  `Brand` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard brand.',
-  `Model` VARCHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard model',
-  `Revision` VARCHAR(15) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard revision.',
-  `FormFactor` VARCHAR(15) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard form factor.',
-  `CpuBrand` VARCHAR(15) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard CPU brand.',
-  `Socket` VARCHAR(15) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard socket.',
-  `Chipset` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard chipset.',
+  `Brand` CHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard brand.',
+  `Model` CHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard model',
+  `Revision` CHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard revision.',
+  `FormFactor` CHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard form factor.',
+  `CpuBrand` CHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard CPU brand.',
+  `Socket` CHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard socket.',
+  `Chipset` CHAR(25) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Motherboard chipset.',
   PRIMARY KEY (`PartID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
@@ -125,9 +125,9 @@ CREATE UNIQUE INDEX `BarCodeID_UNIQUE` ON `inventory`.`motherboard` (`BarCodeID`
 DROP TABLE IF EXISTS `inventory`.`part_number` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`part_number` (
-  `PartNumberID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part number.',
-  `BarCodeID` INT(11) NOT NULL,
-  `PartNumber` VARCHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Part Number.',
+  `PartNumberID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part number.',
+  `BarCodeID` INT(16) NOT NULL,
+  `PartNumber` CHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Part Number.',
   `Timestamp` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
   PRIMARY KEY (`PartNumberID`))
 ENGINE = InnoDB
@@ -147,19 +147,19 @@ CREATE UNIQUE INDEX `BarCodeID_UNIQUE` ON `inventory`.`part_number` (`BarCodeID`
 DROP TABLE IF EXISTS `inventory`.`processor` ;
 
 CREATE TABLE IF NOT EXISTS `inventory`.`processor` (
-  `PartID` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part.',
-  `BarCodeID` INT(11) NOT NULL,
-  `CategoryID` INT(11) NOT NULL,
+  `PartID` INT(16) NOT NULL AUTO_INCREMENT COMMENT 'Unique ID for each part.',
+  `BarCodeID` INT(16) NOT NULL,
+  `CategoryID` INT(16) NOT NULL,
   `TimeStamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'Timestamp.',
-  `Quanity` INT(11) NOT NULL,
+  `Quanity` INT(16) NOT NULL,
   `IsNew` TINYINT NOT NULL DEFAULT 0,
   `IsTested` TINYINT NOT NULL DEFAULT 0,
-  `Brand` VARCHAR(15) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Part Details.',
-  `Series` VARCHAR(50) NOT NULL,
-  `Cores` INT(11) NOT NULL,
-  `ClockRate` VARCHAR(15) NOT NULL,
-  `Socket` VARCHAR(15) NOT NULL,
-  `CodeName` VARCHAR(15) NOT NULL,
+  `Brand` CHAR(50) CHARACTER SET 'utf8mb4' COLLATE 'utf8mb4_unicode_ci' NOT NULL COMMENT 'Part Details.',
+  `Model` CHAR(50) NOT NULL,
+  `Cores` CHAR(25) NOT NULL,
+  `ClockRate` CHAR(25) NOT NULL,
+  `Socket` CHAR(25) NOT NULL,
+  `CodeName` CHAR(50) NOT NULL,
   PRIMARY KEY (`PartID`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
