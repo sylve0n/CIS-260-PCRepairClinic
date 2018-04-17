@@ -1,6 +1,6 @@
 <?php
-  $usrName = "Steven";
-  $passWord = "puppies";
+  $usrName = "root";
+  $passWord = "toor";
   #$db = mysqli_connect("localhost", $usrName, $passWord, 'inventory');
   $db = new mysqli("localhost", $usrName, $passWord, 'inventory');
 
@@ -8,7 +8,7 @@
   if ($connection_error != null){
       echo "<p> error connecting: $connection_error</p>";
   } else {
-      //echo "good to go   ";
+      //echo "Good to Go!!!";
   }
 
 ?>
