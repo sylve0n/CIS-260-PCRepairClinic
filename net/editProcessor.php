@@ -3,7 +3,6 @@
     header('Location: processor.php');
   }
   include "../global/database.php";
-  include "../global/imports.php";
   $prodID = $_GET['prod'];
   $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Cores, ClockRate, Socket, CodeName, BarCode ,PartNumber from processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
   $qry = mysqli_query($db, $sql);
@@ -11,7 +10,7 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-    <meta charset="utf-8">
+  	<?php include "../global/imports.php"; ?>
     <title>Edit Part</title>
   </head>
   <body>
@@ -53,20 +52,27 @@
 		Part Number
 	    </th>
 	  </tr>
-
-
-    <?php
+  </table>
+  <?php
       $rs = mysqli_fetch_array ($qry);
-      extract($rs);
-	   print "<td><input type='text' value='${Quanity}' name='qty'/></td><td><input type='text' value='${IsNew}' name='isnew' size='1'/></td><td><input type='text' value='${IsTested}' name='tested' size='1'/></td>
-	   <td><input type='text' value ='${Brand}' name='brand' size='6'/></td><td><input type='text' value='${Model}' name='type'/></td><td><input type='text' value='${Cores}' name='rate' size='10'/></td>
-	  <td><input type='text' value='${ClockRate}' name='mname'/></td><td><input type='text' value='${Socket}' name='socket' size='10'/></td><td><input type='text' value='${CodeName}' name='cname'/></td><td><input type='text' value='${PartNumber}' name='pnum'/></td>";
-
-
-
+	  extract($rs);
+	  
+	  print "
+  		<input type='text' value='${Quanity}'>
+	  ";
+	  
+	//  print  "<span><input type='text' value='${Quanity}' name='qty'/></span>
+	//  	<span><label><input type='checkbox' name='isnew' id='isnew'/></label></span>
+	// 	<span><label><input type='checkbox' name='tested' id='istested'/></label></span>
+	// 	<span><input type='text' value ='${Brand}' name='brand'/></span>
+	// 	<span><input type='text' value='${Model}' name='type'/></span>
+	// 	<span><input type='text' value='${Cores}' name='rate'/></span>
+	// 	<span><input type='text' value='${ClockRate}' name='mname'/></span>
+	// 	<span><input type='text' value='${Socket}' name='socket'/></span>
+	// 	<span><input type='text' value='${CodeName}' name='cname'/></span>
+	// 	<span><input type='text' value='${PartNumber}' name='pnum'/></span>";
 
     ?>
-  </table>
   <input type="submit" value="Save Changes" /><input type="hidden" name="partid" value="<?=$PartID?>">
   </form>
   </body>

@@ -46,6 +46,10 @@ select{
     width: 80%; 
 }
 
+.inline-block{
+    display: inline-block;
+}
+
 /* editing fields */
 input[type="text"]{
     color: grey;

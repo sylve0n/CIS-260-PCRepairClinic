@@ -60,21 +60,19 @@
     </tr>
 
 
-    <?php
+   <?php
         //Display all the processor parts
         $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Cores, ClockRate, Socket, CodeName, BarCode, PartNumber FROM processor join bar_code on processor.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
         $qry = mysqli_query($db, $sql);
-
-        while ($rs = mysqli_fetch_array(mysqli_query($db, $sql))){
+        
+        while ($rs = mysqli_fetch_array($qry)){
           extract ($rs);
-		  print "<tr>";
-		  print "<td>${Quanity}</td>";
+		      print "<tr>";
+		      print "<td>${Quanity}</td>";
           print "<td>${IsNew}</td><td>${IsTested}</td><td>${Brand}</td><td>${Model}</td><td>${Cores}</td><td>${ClockRate}</td><td>${Socket}</td><td>${CodeName}</td><td>${BarCode}</td><td>${PartNumber}</td>";
           print "<td><a href='editProcessor.php?prod=${PartID}'>Edit</a></td>";
           print "</tr>";
         }
-
-
     ?>
     </table>
 
