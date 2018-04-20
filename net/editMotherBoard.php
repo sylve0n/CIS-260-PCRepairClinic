@@ -61,10 +61,28 @@
     <?php
       $rs = mysqli_fetch_array ($qry);
       extract($rs);
-      print "<td><input type='text' value='${Quanity}' name='qty' size='3'/></td><td><input type='text' value='${IsNew}' name='new' size='2'/></td><td><input type='text' value='${IsTested}' name='test' size='2'/></td>
-	  <td><input type='text' value='${Brand}' name='brand'/></td><td><input type='text' value='${Model}' name='model'/></td><td><input type='text' value='${FormFactor}' name='factor'/></td>
-	  <td><input type='text' value='${CpuBrand}' name='cpu'/></td><td><input type='text' value='${Socket}' name='socket'/></td><td><input type='text' value='${Chipset}' name='chipset'/></td>
-	  <td><input type='text' value='${BarCode}' name='barcode'/></td><td><input type='text' value='${PartNumber}' name='partnumber'/></td>";
+	  print 
+	  "<td><input type='text' value='${Quanity}' name='qty' size='3'/></td>
+	  <td>
+	  	<label>
+			<input type='checkbox' class='filled-in' name='new' />
+			<span></span>
+	  	</label>
+	  </td>
+	  <td>
+		<label>
+			<input type='checkbox' class='filled-in' name='test' />
+			<span></span>
+  		</label>
+	  </td>
+	  <td><input type='text' value='${Brand}' name='brand'/></td>
+	  <td><input type='text' value='${Model}' name='model'/></td>
+	  <td><input type='text' value='${FormFactor}' name='factor'/></td>
+	  <td><input type='text' value='${CpuBrand}' name='cpu'/></td>
+	  <td><input type='text' value='${Socket}' name='socket'/></td>
+	  <td><input type='text' value='${Chipset}' name='chipset'/></td>
+	  <td><input type='text' value='${BarCode}' name='barcode'/></td>
+	  <td><input type='text' value='${PartNumber}' name='partnumber'/></td>";
 
     ?>
   </table>

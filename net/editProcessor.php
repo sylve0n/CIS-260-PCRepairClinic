@@ -10,7 +10,10 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
-  	<?php include "../global/imports.php"; ?>
+  <?php 
+	include '../global/imports.php'
+  ?>
+    <meta charset="utf-8">
     <title>Edit Part</title>
   </head>
   <body>
@@ -52,28 +55,45 @@
 		Part Number
 	    </th>
 	  </tr>
-  </table>
-  <?php
-      $rs = mysqli_fetch_array ($qry);
-	  extract($rs);
-	  
-	  print "
-  		<input type='text' value='${Quanity}'>
-	  ";
-	  
-	//  print  "<span><input type='text' value='${Quanity}' name='qty'/></span>
-	//  	<span><label><input type='checkbox' name='isnew' id='isnew'/></label></span>
-	// 	<span><label><input type='checkbox' name='tested' id='istested'/></label></span>
-	// 	<span><input type='text' value ='${Brand}' name='brand'/></span>
-	// 	<span><input type='text' value='${Model}' name='type'/></span>
-	// 	<span><input type='text' value='${Cores}' name='rate'/></span>
-	// 	<span><input type='text' value='${ClockRate}' name='mname'/></span>
-	// 	<span><input type='text' value='${Socket}' name='socket'/></span>
-	// 	<span><input type='text' value='${CodeName}' name='cname'/></span>
-	// 	<span><input type='text' value='${PartNumber}' name='pnum'/></span>";
 
+
+    <?php
+      $rs = mysqli_fetch_array ($qry);
+      extract($rs);
+	   print "<td><input type='text' value='${Quanity}' name='qty'/></td>
+	   <td>
+	  	<label>
+			<input type='checkbox' class='filled-in' name='new'";
+
+		if($IsNew){
+			print " checked";
+		}
+
+		print "/>
+		<span></span>
+	  	</label>
+		</td>
+		<td>
+		<label>
+			<input type='checkbox' class='filled-in' name='test'";
+  		if($IsTested){
+			print " checked";
+		}
+		print "/>
+			<span></span>
+  		</label>
+	  	</td>
+	   <td><input type='text' value ='${Brand}' name='brand' size='6'/></td>
+	   <td><input type='text' value='${Model}' name='model'/></td>
+	   <td><input type='text' value='${Cores}' name='cores' size='10'/></td>
+	   <td><input type='text' value='${ClockRate}' name='rate'/></td>
+	   <td><input type='text' value='${Socket}' name='socket' size='10'/></td>
+	   <td><input type='text' value='${CodeName}' name='cname'/></td>
+	   <td><input type='text' value='${PartNumber}' name='pnum'/></td>";
     ?>
-  <input type="submit" value="Save Changes" /><input type="hidden" name="partid" value="<?=$PartID?>">
+  </table>
+  	<input type="submit" value="Save Changes" /><input type="hidden" name="partid" value="<?=$PartID?>">
+	<input type="reset" value="Reset">
   </form>
   </body>
 </html>

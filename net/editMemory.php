@@ -54,9 +54,31 @@
     <?php
       $rs = mysqli_fetch_array ($qry);
       extract($rs);
-      print "<td><input type='text' value='${Quanity}' name='qty'/></td><td><input type='text' value='${IsNew}' name='isnew' size='1'/></td><td><input type='text' value='${IsTested}' name='tested' size='1'/></td><td><input type='text' value ='${Brand}' name='brand' size='6'/>
-	  </td><td><input type='text' value='${Type}' name='type'/></td><td><input type='text' value='${Rate}' name='rate' size='10'/></td>
-	  <td><input type='text' value='${ModuleName}' name='mname'/></td><td><input type='text' value='${IsLowVoltage}' name='voltage' size='1'/></td><td><input type='text' value='${PartNumber}' name='pnum'/></td>";
+      print "
+      <td><input type='text' value='${Quanity}' name='qty'/></td>
+      <td>
+        <label>
+          <input type='checkbox' name='new' />
+          <span></span>
+        </label>
+      </td>
+      <td>
+        <label>
+            <input type='checkbox' name='test' />
+            <span></span>
+        </label>
+      </td>
+      <td><input type='text' value ='${Brand}' name='brand' size='6'/></td>
+      <td><input type='text' value='${Type}' name='type'/></td>
+      <td><input type='text' value='${Rate}' name='rate' size='10'/></td>
+      <td><input type='text' value='${ModuleName}' name='mname'/></td>
+      <td>
+        <label>
+            <input type='checkbox' name='voltage' />
+            <span></span>
+        </label>
+      </td>
+      <td><input type='text' value='${PartNumber}' name='pnum'/></td>";
 
 
     ?>
