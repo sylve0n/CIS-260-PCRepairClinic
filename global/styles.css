@@ -6,29 +6,21 @@ body{
 
 /*nav styles*/
 .nav-wrapper{
-    background-color: rgb(38, 102, 157);
     margin-bottom: 200px;
 }
 
 /*icons*/
 .main-icons{
     margin: auto;
-    margin-top: 11em;
     text-align: center;
-}
-
-.main-icons i{
     font-size: 15em;
-    margin: auto;
-}
-.icon-links{
-    color: #62A8E5;
 }
 .icons-text{
     font-weight: bold;
-    color: rgb(38, 102, 157);
+    color: #0097a7;
+    font-size: 3.5em;
 }
-.icon-links:hover{
+.icons-link:hover{
     filter: brightness(65%);
 }
 

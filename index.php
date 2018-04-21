@@ -11,9 +11,18 @@
     ?>
 </head>
 <body>
-    <p>This is a placeholder page for the initial login screen.</p>
-    <a href="clinic/index.php">Go to clinic </a>
-    <br>
-    <a href="net/index.php">Go to net</a>
+    <h1>Choose a Side</h1>
+    <div class="row">
+        <div class="col s6 icons-link">
+            <i class="material-icons main-icons teal-text text-darken-2">healing</i>
+            <br>
+            <p><a href="clinic/index.php" class="icons-text">Clinic </a></p>
+        </div>
+        <div class="col s6 icons-link">
+            <i class="material-icons main-icons blue-text text-darken-2">language</i>
+            <p><a href="net/index.php" class="icons-text">Net</a></p>
+        </div>
+    </div>
+    
 </body>
 </html>

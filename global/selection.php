@@ -18,7 +18,7 @@
 					}
 			?>	
 		</select>
-		<button type="submit" name="action" value="submit" class="waves-effect waves-light btn btn-large">Submit</button>	
+		<button type="submit" name="action" value="submit" class="waves-effect waves-light btn btn-large cyan darken-2">Submit</button>	
 	</div>
 </form>
 <script src="script.js"></script>
