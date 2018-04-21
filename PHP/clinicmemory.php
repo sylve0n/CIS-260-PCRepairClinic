@@ -61,9 +61,16 @@
 
 
     <?php
-        //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Type, Rate, StandardName, ModuleName, IsLowVoltage, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
-        $qry = mysqli_query($db, $sql);
+         $barcodes = "";
+		 $choices = "";
+		 $parts1 = "";
+		if ($choices = $parts1){
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE BarCode = ${barcodes}";
+        
+		}
+		else{
+		$sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM memory join bar_code on memory.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE PartNumber = ${barcodes} ";
+		}$qry = mysqli_query($db, $sql);
         
 
         while ($rs = mysqli_fetch_array($qry)){

@@ -25,11 +25,11 @@
 			break;
 			
 			case "1":
-			include "motherboard.php";
+			include "clinicMotherboard.php";
 			break;
 			 
 			case "2":
-			include "processor.php";
+			include "addProcessor.php";
 			break;
 			
 			case "3":

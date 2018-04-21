@@ -8,9 +8,13 @@
       include "database.php";
       if (isset($_POST['qty'])){
         extract ($_POST);
-        $sql = $db->prepare("Update processor SET Quanity = ? IsNew, = ? IsTested, = ? Brand, = ? Model, = ?, Cores = ?, ClockRate = ?, Socket = ?, CodeName = ?, PartNumber = ? WHERE PartID = ?");
-        $sql->bind_param("iiissiisssi", $qty, $isnew, $tested, $brand, $model, $cores, $clockrate, $socket, $cname, $pnum, $partid);
+		//print_r($_POST);
+        $sql = $db->prepare("Update processor SET Quanity = ?, IsNew = ?, IsTested = ? ,Brand = ?, Model = ?, Cores = ?, Clockrate = ?, Socket = ?, CodeName = ? WHERE PartID = ?");
+        $sql->bind_param("iiississsi", $qty, $isnew, $tested, $brand, $model, $cores, $rate, $socket, $cname, $partid);
         $sql->execute();
+		$sql = $db->prepare("Update part_number set PartNumber = ? Where PartNumberID = ?");
+		$sql->bind_param("si", $pnum, $partid);
+		$sql->execute();
         if (mysqli_affected_rows($db) >= 1){
           $status = "Update was a success";
         }else{

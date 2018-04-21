@@ -4,25 +4,11 @@
     <meta charset="utf-8">
     <title>View Products</title>
     <?php
-	  $barcodes = "";
-	  $status = "";
+	 
       include "database.php";
-      if (isset($_POST['qty'])){
-        extract ($_POST);
-	  $sql = $db->prepare("SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE BarCode = ${barcodes}");
-        $sql->bind_param("ii", $qty, $partid);
-        $sql->execute();
-        if (mysqli_affected_rows($db) >= 1){
-          $status = "Update was a success";
-        }else{
-          $status = "Update Not Successful";
-        }
-
-      }
      ?>
   </head>
   <body>
-    <?php print "${status}";?>
         <table width="100%">
     <tr>
       <th>
@@ -64,9 +50,17 @@
 
 
     <?php
-        //Display all the processor parts
-        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard WHERE BarCode = ${barcodes} join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID";
-        $qry = mysqli_query($db, $sql);
+		 $barcodes = "";
+		 $choices = "";
+		 $parts1 = "";
+		if ($choices = $parts1){
+        $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE BarCode = ${barcodes}";
+        
+		}
+		else{
+		$sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE PartNumber = ${barcodes} ";
+		}
+		$qry = mysqli_query($db, $sql);
         
 
         while ($rs = mysqli_fetch_array($qry)){

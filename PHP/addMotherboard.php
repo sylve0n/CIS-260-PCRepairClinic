@@ -1,11 +1,5 @@
 <?php
-  if (!isset($_GET['prod'])){
-    header('Location: motherboard.php');
-  }
-  include "database.php";
-  $prodID = $_GET['prod'];
-  $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID where PartID = ${prodID}";
-  $qry = mysqli_query($db, $sql);
+  
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
