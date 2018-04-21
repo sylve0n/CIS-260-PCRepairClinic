@@ -1,4 +1,19 @@
-
+<?php
+  /*if (!isset($_GET['prod'])){
+    header('Location: processor.php');
+  }*/
+  include "database.php";
+  $test = $_REQUEST['pnum'];
+  //insert sattement
+  /*$sql = "Insert Into part_number (BarCodeID, PartNumber) values($test, '$test')";*/
+  print $sql;
+  $qry = mysqli_query($db, $sql);
+  $lastRecord = mysqli_insert_id($db);
+  print $lastRecord;
+  
+  //find last record
+  //SELECT * FROM `bar_code` ORDER BY BarCodeID DESC LIMIT 1
+ ?>
  
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -8,8 +23,8 @@
   </head>
   <body>
 
-    <h2>Edit Part</h2>
-    <form method="post" action="processor.php">
+    <h2>Add Part</h2>
+    <form method="post" action="addProcessor.php">
 
 
     <table width="60%">

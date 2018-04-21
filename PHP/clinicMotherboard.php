@@ -50,16 +50,18 @@
 
 
     <?php
-		 $barcodes = "";
+		 
 		 $choices = "";
 		 $parts1 = "";
-		if ($choices = $parts1){
+		 $barcodes = $_POST['barcodes'];
+		if ($choices == $parts1){
         $sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE BarCode = ${barcodes}";
         
 		}
 		else{
 		$sql = "SELECT PartID, Quanity, IsNew, IsTested, Brand, Model, Revision, FormFactor, CpuBrand, Socket, Chipset, BarCode, PartNumber FROM motherboard join bar_code on motherboard.BarCodeID = bar_code.BarCodeID join part_number on bar_code.BarCodeID = part_number.BarCodeID WHERE PartNumber = ${barcodes} ";
 		}
+		print $sql;
 		$qry = mysqli_query($db, $sql);
         
 

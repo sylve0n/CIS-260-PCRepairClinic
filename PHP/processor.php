@@ -10,7 +10,7 @@
         extract ($_POST);
 		//print_r($_POST);
         $sql = $db->prepare("Update processor SET Quanity = ?, IsNew = ?, IsTested = ? ,Brand = ?, Model = ?, Cores = ?, Clockrate = ?, Socket = ?, CodeName = ? WHERE PartID = ?");
-        $sql->bind_param("iiississsi", $qty, $isnew, $tested, $brand, $model, $cores, $rate, $socket, $cname, $partid);
+        $sql->bind_param("iiissssssi", $qty, $isnew, $tested, $brand, $model, $cores, $rate, $socket, $cname, $partid);
         $sql->execute();
 		$sql = $db->prepare("Update part_number set PartNumber = ? Where PartNumberID = ?");
 		$sql->bind_param("si", $pnum, $partid);
