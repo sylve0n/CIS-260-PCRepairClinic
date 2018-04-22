@@ -4,15 +4,19 @@
   }*/
   include "database.php";
   $test = $_REQUEST['pnum'];
+  $selection = $_POST['categories'];
+  print $selection;
   //insert sattement
-  /*$sql = "Insert Into part_number (BarCodeID, PartNumber) values($test, '$test')";*/
-  print $sql;
+  $sql = "Insert Into part_number (BarCodeID, PartNumber) values($test, '$test')";
+  //$sql = "SELECT * FROM `bar_code` ORDER BY BarCodeID DESC LIMIT 1";
   $qry = mysqli_query($db, $sql);
   $lastRecord = mysqli_insert_id($db);
   print $lastRecord;
   
   //find last record
   //SELECT * FROM `bar_code` ORDER BY BarCodeID DESC LIMIT 1
+  
+  
  ?>
  
 <!DOCTYPE html>
