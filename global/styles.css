@@ -1,55 +1,64 @@
-body{
-    background-color: white;
-    margin: auto;
-    text-align: center;
+body {
+  background-color: white;
+  margin: auto;
+  text-align: center;
 }
 
 /*nav styles*/
-
-
 /*icons*/
-.main-icons{
-    margin: auto;
-    text-align: center;
-    font-size: 15em;
+.main-icons {
+  margin: auto;
+  text-align: center;
+  font-size: 15em;
 }
-.icons-text{
-    font-weight: bold;
-    color: #0097a7;
-    font-size: 3.5em;
+
+.icons-text {
+  font-weight: bold;
+  color: #0097a7;
+  font-size: 3.5em;
 }
-.icons-link:hover{
-    filter: brightness(65%);
+
+.icons-link:hover {
+  filter: brightness(65%);
 }
 
 /*search and results*/
-table{
-    margin: auto;
-    width: 90%;
-}
-.input-field{
-    margin: 50px auto;
-    text-align: center;
-    width: 20%;
-}
-select{
-    width: 80%; 
+table {
+  margin: auto;
+  width: 90%;
 }
 
-.inline-block{
-    display: inline-block;
+.input-field {
+  margin: 50px auto;
+  text-align: center;
+  width: 20%;
+}
+
+select {
+  width: 80%;
+}
+
+.inline-block {
+  display: inline-block;
 }
 
 /* editing fields */
-input[type="text"]{
-    color: grey;
+input[type=text] {
+  color: grey;
 }
-input[type="text"]:focus{
-    color: black;
-}
-/* Barcode */
 
-.barcode{
-    font-family: 'Libre Barcode 128 Text', cursive;
-    font-size: 2.2em;
+input[type=text]:focus {
+  color: black;
+}
+
+/* Barcode */
+.barcode {
+  font-family: "Libre Barcode 128 Text", cursive;
+  font-size: 2.2em;
+}
+
+.collection{
+  width: 30%;
+  margin: auto;
+  font-size: 1.5em;
 }

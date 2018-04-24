@@ -1,5 +1,5 @@
 <?php
-  
+  include "../global/database.php";
  ?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -9,7 +9,7 @@
   </head>
   <body>
 
-    <h2>Edit Part</h2>
+    <h2>Add Part</h2>
     <form method="post" action="memory.php">
 
 
