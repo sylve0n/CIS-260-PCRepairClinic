@@ -1,10 +1,14 @@
 body{
     background-color: white;
 }
+
+/*nav styles*/
 .nav-wrapper{
-    background-color: green;
+    background-color: rgb(38, 102, 157);
+    margin-bottom: 200px;
 }
 
+/*icons*/
 .main-icons{
     margin: auto;
     margin-top: 11em;
@@ -12,22 +16,36 @@ body{
 }
 
 .main-icons i{
-    font-size: 20em;
+    font-size: 15em;
     margin: auto;
 }
-
-table{
-    margin: 0px 10px;
-}
-
-.material-icons{
-    color: purple;
+.icon-links{
+    color: #62A8E5;
 }
 .icons-text{
     font-weight: bold;
-    color: teal;
+    color: rgb(38, 102, 157);
+}
+.icon-links:hover{
+    filter: brightness(65%);
 }
 
-.icon-links:hover{
-  filter: brightness(65%);
+/*search and results*/
+table{
+    margin: auto;
+    width: 90%;
+}
+.input-field{
+    margin: 50px auto;
+    text-align: center;
+    width: 20%;
+}
+select{
+    width: 80%; 
+}
+/* Barcode */
+
+.barcode{
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 2.2em;
 }
