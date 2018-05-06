@@ -67,7 +67,7 @@
                     <div class="col s4">
                         <a href="search.php?mode=reprint" class="icon-links">
                             <i class="material-icons fas fa-barcode"></i>
-                            <h2 class="icons-text">Reprint Barcode</h2> 
+                            <h2 class="icons-text">Future Use</h2> 
                         </a>
                     </div>
                 </div>
