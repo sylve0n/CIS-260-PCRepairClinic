@@ -60,10 +60,12 @@
 
 	function run_sql_query($tableName) {
 		include "database.php";
+		global $mode;
 
 		//Function call to build field names.
 		$fieldNames = get_field_names($tableName);
 		global $txtInput;
+		global $action;
 		//Function call to build sql statement.
 		$sql = get_sql_statement($fieldNames);
 
@@ -71,8 +73,16 @@
 		$rowCount = $result->num_rows;
 
 		if ($rowCount < 1) {
+			
 			print "No records found.";
-			return;
+			if ($mode == "add") {
+				include "add.php";
+			}
+			return;		
+			
+		} else if ($rowCount == 1 && $mode == "edit"){
+			
+			include "edit.php";
 		}
 
 		echo "<h2>{$tableName} Search Results</h2>";

@@ -1,37 +1,49 @@
-<script src="functions.js"></script>
+
 <?php
-include "database.php";
-include "functions.php";
+
 
   //check to see if the form was posted
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    extract($_POST);
-    $str = "Update {$tblName} SET ";
+    // extract($_POST);
+    // $str = "Update {$tblName} SET ";
 
-    foreach ($_POST as $key => $value) {
-      if($key != "tblName"){
-        $str .=   "$key = '$value', ";
-      }
-    }
-    $str = substr($str, 0, -2);
-    $str .=    " Where PartID = '{$_POST['PartID']}'";
-    //mysqli_query($db, $str);
-    echo $str;
+    // foreach ($_POST as $key => $value) {
+      // if($key != "tblName"){
+        // $str .=   "$key = '$value', ";
+      // }
+    // }
+    // $str = substr($str, 0, -2);
+    // $str .=    " Where PartID = '{$_POST['PartID']}'";
+    // //mysqli_query($db, $str);
+    // echo $str;
 
-    //display the updated database
-    $sql = "select * from $tblName";
-    $qry = mysqli_query($db, $sql);
-    $rs = mysqli_fetch_assoc($qry);
-    foreach ($rs as $key => $value) {
-      echo $key . ": " . $value . "<br />";
-    }
-  }
+    // //display the updated database
+    // $sql = "select * from $tblName";
+    // $qry = mysqli_query($db, $sql);
+    // $rs = mysqli_fetch_assoc($qry);
+    // foreach ($rs as $key => $value) {
+      // echo $key . ": " . $value . "<br />";
+    // }
+  // }
 
+  global $txtInput;
+  //global $partID;
+  global $db;
+	
+  $part = $txtInput;
 
+  //get the barCode
+  $sql = "select BarCodeID from part_number where PartNumber = '$txtInput'";
+  print $sql;
+  $qry = mysqli_query($db, $sql);
+  $rs = mysqli_fetch_array($qry);
+  $barCodeID = $rs['BarCodeID'];
 
-  $part = "SL9XN";
-
+  $sql="select BarCode from bar_code where BarCodeID = $barCodeID";
+  $qry = mysqli_query($db, $sql);
+  $rs = mysqli_fetch_array($qry);
+  $aryBarCode = array($barCodeID, $rs['BarCode']);
   $barCode = get_barCode($part);
   $tableName = get_table_name($barCode[1]);
 
@@ -77,5 +89,5 @@ include "functions.php";
 
  ?>
  <input type="text" value="<?php echo $tableName?>" name="tblName">
- <input type="button" value="Save The Changes" onclick="saveChanges()"/>
+ <input type="button" name = "action" value="Save" onclick="saveChanges()"/>
   </form>

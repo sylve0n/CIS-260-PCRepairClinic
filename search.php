@@ -1,8 +1,17 @@
 <?php
 	include "database.php";
 	include "functions.php";
+	
 ?>
+<script href="functions.js"></script>
 <script>
+//utilize a confirmation window to ensure changes are intended.
+	function saveChanges(){
+	  blnSave = confirm("Save Changes");
+	  if (blnSave){
+	    document.getElementById("frmPart").submit();
+	  }
+	}
 	function confirmChanges(){
 		
 	
@@ -13,6 +22,30 @@
 	}
 </script>
 <?php
+	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+		
+	    extract($_POST);
+	    $str = "Update {$tblName} SET ";
+
+	    foreach ($_POST as $key => $value) {
+		 if($key != "tblName"){
+		   $str .=   "$key = '$value', ";
+		 }
+	    }
+	    $str = substr($str, 0, -2);
+	    $str .=    " Where PartID = '{$_POST['PartID']}'";
+	    mysqli_query($db, $str);
+	    
+
+	    //display the updated database
+	    $sql = "select * from $tblName";
+	    $qry = mysqli_query($db, $sql);
+	    $rs = mysqli_fetch_assoc($qry);
+	    foreach ($rs as $key => $value) {
+		 echo $key . ": " . $value . "<br />";
+	    }
+	  }
+
 	//Mode will determine what displays on the page.
 	//Mode is sent as a get request , query string in the URL
 	//The default mode is 'search'
