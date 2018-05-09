@@ -1,0 +1,59 @@
+body{
+    background-color: white;
+    margin: auto;
+    text-align: center;
+}
+
+/*nav styles*/
+.nav-wrapper{
+    background-color: rgb(38, 102, 157);
+    margin-bottom: 200px;
+}
+
+/*icons*/
+.main-icons{
+    margin: auto;
+    margin-top: 11em;
+    text-align: center;
+}
+
+.main-icons i{
+    font-size: 15em;
+    margin: auto;
+}
+.icon-links{
+    color: #62A8E5;
+}
+.icons-text{
+    font-weight: bold;
+    color: rgb(38, 102, 157);
+}
+.icon-links:hover{
+    filter: brightness(65%);
+}
+
+.icons-home{
+    font-size: 11em;
+}
+/*search and results*/
+select, input[type='text']{
+    width: 30%!important;
+}
+
+select{
+    margin: auto;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+.input-field{
+    text-align: center;
+    margin: auto;
+    width: 80%;
+}
+
+/* Barcode */
+
+.barcode{
+    font-family: 'Libre Barcode 128 Text', cursive;
+    font-size: 2.2em;
+}

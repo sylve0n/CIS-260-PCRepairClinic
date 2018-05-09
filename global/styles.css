@@ -1,57 +1,65 @@
-body{
-    background-color: white;
-    margin: auto;
-    text-align: center;
+body {
+  background-color: white;
+  margin: auto;
+  text-align: center;
 }
 
 /*nav styles*/
-.nav-wrapper{
-    margin-bottom: 200px;
+.nav-wrapper {
+  background-color: #26669d;
+  margin-bottom: 200px;
 }
 
 /*icons*/
-.main-icons{
-    margin: auto;
-    text-align: center;
-    font-size: 15em;
+.main-icons {
+  margin: auto;
+  margin-top: 11em;
+  text-align: center;
 }
-.icons-text{
-    font-weight: bold;
-    color: #0097a7;
-    font-size: 3.5em;
+
+.main-icons i {
+  font-size: 15em;
+  margin: auto;
 }
-.icons-link:hover{
-    filter: brightness(65%);
+
+.icon-links {
+  color: #62A8E5;
+}
+
+.icons-text {
+  font-weight: bold;
+  color: #26669d;
+}
+
+.icon-links:hover {
+  filter: brightness(65%);
+}
+
+.icons-home {
+  font-size: 11em;
 }
 
 /*search and results*/
-table{
-    margin: auto;
-    width: 90%;
-}
-.input-field{
-    margin: 50px auto;
-    text-align: center;
-    width: 20%;
-}
-select{
-    width: 80%; 
+select, input[type=text] {
+  width: 30% !important;
 }
 
-.inline-block{
-    display: inline-block;
+select {
+  margin: auto;
+  display: inline-block;
+  margin-bottom: 10px;
 }
 
-/* editing fields */
-input[type="text"]{
-    color: grey;
+.input-field {
+  text-align: center;
+  margin: auto;
+  width: 80%;
 }
-input[type="text"]:focus{
-    color: black;
-}
+
 /* Barcode */
-
-.barcode{
-    font-family: 'Libre Barcode 128 Text', cursive;
-    font-size: 2.2em;
+.barcode {
+  font-family: "Libre Barcode 128 Text", cursive;
+  font-size: 2.2em;
 }
+
+/*# sourceMappingURL=global/styles.css.map */

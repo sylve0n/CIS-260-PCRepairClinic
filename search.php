@@ -1,10 +1,15 @@
 <?php
 	include "database.php";
 	include "functions.php";
+	include "global/imports.php";
+
+	//TODO: figure out how to differentiate between net side and clinic side for header.
+	// as of now, using net header on both pages to see how styling looks.
+	include "global/net-header.php";
 	
 ?>
-<script href="functions.js"></script>
-<script>
+<script href="script.js"></script>
+<!-- <script>
 //utilize a confirmation window to ensure changes are intended.
 	function saveChanges(){
 	  blnSave = confirm("Save Changes");
@@ -20,7 +25,7 @@
 			document.getElementById('frmRemove').submit();
 		}
 	}
-</script>
+</script> -->
 <?php
 	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		
@@ -89,24 +94,23 @@
 			
 		}
 	}
-?>
-
-<form method="get">
-
-<?php
 	if ($type == "pSearch") {
 		echo "<h1>Part Number Search Page</h1>";
 	} else if ($type == "bSearch") {
 		echo "<h1>Bar Code Search Page</h1>";
 	}
+?>
 
+<form method="get">
+<div class="input-field">
+<?php
 	//Changes what is displayed depending on the search mode.
 	//Loads the category dropdown box.
 	$sqlCat = "select * from category";
 	$qryCat = mysqli_query($db, $sqlCat);
 	if ($type == "pSearch"){
 		$placeHolder = "Enter Part Number";
-		print ("<select name='category' />");
+		print ("<select name='category' class='browser-default'>");
 		print ("<option ");
 		if (!isset($category)){
 			print "selected";
@@ -126,11 +130,12 @@
 		$placeHolder = "Scan Bar Code";
 	}
 
-	print("<input type='text' placeholder='{$placeHolder}' value='{$txtInput}' name='txtInput'/>");
-	print("<input type='submit' value='Search'/>");
-	print("<input type='text' value='{$mode}' name='mode'/>");
+	print("<input type='text' placeholder='{$placeHolder}' value='{$txtInput}' name='txtInput'/><br>");
+	print("<button class='btn waves-effect waves-light' type='submit'>Search</button><br>");
+	print("<input type='text' value='{$mode}' name='mode' class='browser-default'/><br>");
 	print("<input type='input' name='type' value='{$type}'/>");
 ?>
+</div>
 </form>
 
 <?php
