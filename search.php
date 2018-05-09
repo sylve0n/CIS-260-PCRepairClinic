@@ -3,9 +3,12 @@
 	include "functions.php";
 	include "global/imports.php";
 
-	//TODO: figure out how to differentiate between net side and clinic side for header.
-	// as of now, using net header on both pages to see how styling looks.
-	include "global/net-header.php";
+	if($_GET['side']=="net"){
+		include "global/net-header.php";
+
+	} else if($_GET['side']=="clinic"){
+		include "global/clinic-header.php";
+	}
 	
 ?>
 <script href="script.js"></script>
