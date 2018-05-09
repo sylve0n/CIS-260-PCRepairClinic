@@ -14,19 +14,19 @@
     <div class="container main-icons"> 
         <div class="row">
             <div class="col s4">
-                <a href="search.php?mode=search"  class="icon-links">
+                <a href="search.php?side=net&mode=search&type=pSearch"  class="icon-links">
                     <i class="material-icons">search</i>
                     <h2 class="icons-text">Search Part</h2>
                 </a>
                 </div>
             <div class="col s4">
-                <a href="search.php?mode=remove" class="icon-links">
+                <a href="search.php?side=net&mode=remove&type=bSearch" class="icon-links">
                     <i class="material-icons">remove_from_queue</i>
                     <h2 class="icons-text">Remove Part</h2>
                 </a>
             </div>
             <div class="col s4">
-                <a href="search.php?mode=return" class="icon-links">
+                <a href="search.php?side=net&mode=return&type=bSearch" class="icon-links">
                     <i class="material-icons">keyboard_return</i>
                     <h2 class="icons-text">Return Part</h2>
                 </a>
@@ -34,23 +34,23 @@
         </div>
         <div class="row">
             <div class="col s4">
-                <a href="search.php?mode=add" class="icon-links">
+                <a href="search.php?side=net&mode=add&type=pSearch" class="icon-links">
                     <i class="material-icons">add_to_queue</i>
                     <h2 class="icons-text">Add Part</h2>
                 </a>
             </div>
             <div class="col s4">
-                <a href="search.php?mode=edit" class="icon-links">
+                <a href="search.php?side=net&mode=edit&type=pSearch" class="icon-links">
                     <i class="material-icons">edit</i>
                     <h2 class="icons-text">Edit Part</h2>
                 </a>
             </div>
-            <div class="col s4">
-                <a href="search.php?mode=reprint" class="icon-links">
+            <!--<div class="col s4">
+                <a href="search.php?side=net&mode=reprint&type=pSearch" class="icon-links">
                     <i class="material-icons fas fa-barcode"></i>
                     <h2 class="icons-text">Future Use</h2> 
                 </a>
-            </div>
+            </div>-->
         </div>
     </div>
 

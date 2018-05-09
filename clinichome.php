@@ -15,19 +15,19 @@
     <div class="container main-icons"> 
         <div class="row">
             <div class="col s4">
-                <a href="search.php?mode=search&type=pSearch" class="icon-links">
+                <a href="search.php?side=clinic&mode=search&type=pSearch" class="icon-links">
                     <i class="material-icons">search</i>
                     <h2 class="icons-text">Search Part</h2>
                 </a>
                 </div>
             <div class="col s4">
-                <a href="search.php?mode=remove&type=bSearch" class="icon-links">
+                <a href="search.php?side=clinic&mode=remove&type=bSearch" class="icon-links">
                     <i class="material-icons">remove_from_queue</i>
                     <h2 class="icons-text">Remove Part</h2>
                 </a>
             </div>
             <div class="col s4">
-                <a href="search.php?mode=return&type=bSearch" class="icon-links">
+                <a href="search.php?side=clinic&mode=return&type=bSearch" class="icon-links">
                     <i class="material-icons">keyboard_return</i>
                     <h2 class="icons-text">Return Part</h2>
                 </a>
