@@ -76,7 +76,7 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
 	
 
 	print "<form method='post' id='frmPart'><table>";
-    print "<tr>";
+    print "<thead><tr>";
 
     $count = 0;
     foreach ($rsColumns as $key => $value) {
@@ -85,11 +85,11 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
       if ((strpos($key, "ID")== true) || $dataType->type == 7 ){
 
       }else {
-        print "<td><label for $key>$key</label></td>";
+        print "<th><label for $key>$key</label></th>";
       }
       $count++;
     }
-    print "</tr><tr>";
+    print "</tr></thead><tbody><tr>";
     $count = 0;
     foreach ($rsColumns as $key => $value) {
       $dataType = mysqli_fetch_field_direct($qryColumns, $count);
@@ -97,17 +97,17 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
       if ((strpos($key, "ID")== true) || $dataType->type == 7 ){
         continue;
       } else {
-        print "<td><input type='text' id='$key' name='$key'></td>";
+        print "<td class='addBox'><input type='text' id='$key' name='$key'></td>";
       }
 
     }
-    print "</tr>";
+    print "</tr></tbody>";
 
 
     print "</table>";
     print "<input type='text' value='$txtInput' name='partNumber' />";
     print "<input type='text' value='$tableName' name='tableName' />";
-    print "<input type='button' name = 'action' onclick='saveChanges()' value='Add Part' />";
+    print "<button class='btn' name = 'action' onclick='saveChanges()'/>Add Part</button>";
 print "</form>";
 
  ?>

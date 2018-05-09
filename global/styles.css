@@ -56,10 +56,20 @@ select {
   width: 80%;
 }
 
+table{
+  width: 90%;
+  margin: auto;
+}
+
+.addBox{
+  width: 10%!important;
+}
+.addBox input[type=text]{
+  width: 90%!important;
+}
+
 /* Barcode */
 .barcode {
   font-family: "Libre Barcode 128 Text", cursive;
   font-size: 2.2em;
 }
-
-/*# sourceMappingURL=global/styles.css.map */
