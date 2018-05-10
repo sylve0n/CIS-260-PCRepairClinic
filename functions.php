@@ -60,34 +60,36 @@
 	function run_sql_query($tableName) {
 		include "database.php";
 		global $mode;
+		global $action;
 
 		//Function call to build field names.
 		$fieldNames = get_field_names($tableName);
 		global $txtInput;
-		global $action;
+
 		//Function call to build sql statement.
 		$sql = get_sql_statement($fieldNames);
-
 		$result = mysqli_query($db, $sql);
 		$rowCount = $result->num_rows;
 
 		if ($rowCount < 1) {
 			print ("<script>notFound();</script>");
 			//print "No records found.";
-			if ($mode == "add") {
-				include "add.php";
-			}
-			return;		
-			
-		} else if ($rowCount == 1 && $mode == "edit"){
-			
-			//include "edit.php";
-			
-		}
+				if ($action != "add"){
+					include "add.php";
+					return;
+				}
 
+
+		} else if ($rowCount == 1 && $mode == "edit"){
+			if ($action != "save"){
+				include "edit.php";
+				return;
+			}
+		}
+		$results = mysqli_query($db, $sql);
 		echo "<h2>{$tableName} Search Results</h2>";
 		print ("<table><tr>");
-		while($field = mysqli_fetch_field($result)) {
+		while($field = mysqli_fetch_field($results)) {
 			print "<th> " . $field->name . "</th>";
 		}
 		print "<tr />";
@@ -165,4 +167,6 @@
 		$rsCat = mysqli_fetch_array($qryCat);
 		return $rsCat[0];
 	}
+
+
 ?>
