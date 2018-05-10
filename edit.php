@@ -89,7 +89,7 @@
         if ($key == "PartID"){
 
         } else {
-          print("<td><input id='{$key}' type='text' name='$key' value='$value'/></td>");
+          print("<td class='addBox'><input id='{$key}' type='text' name='$key' value='$value' class='browser-default'/></td>");
         }
 
     //}
@@ -100,5 +100,5 @@
  <input type="hidden" value="<?php echo $tableName?>" name="tblName">
  <input type="hidden" value="<?php echo $rsPart['PartID']?>" name="PartID">
  <input type="hidden" value="save" name="action" />
- <input type="button" value="Save" onclick="saveChanges()"/>
+ <button class='btn waves-effect waves-light' onclick="saveChanges()">Save</button>
   </form>

@@ -49,6 +49,12 @@
                     <h2 class="icons-text">Edit Part</h2>
                 </a>
             </div>
+            <div class="col s4 hidden"> 
+                <a href="search.php?side=net&mode=reprint&type=bSearch" class="icon-links"> 
+                    <i class="fas fa-barcode"></i> 
+                    <h2 class="icons-text">Reprint Barcode - Future Use</h2>  
+                </a> 
+            </div> 
             <!--<div class="col s4">
                 <a href="search.php?side=net&mode=reprint&type=pSearch" class="icon-links">
                     <i class="material-icons fas fa-barcode"></i>

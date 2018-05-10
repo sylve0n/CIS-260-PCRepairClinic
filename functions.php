@@ -88,7 +88,7 @@
 		}
 		$results = mysqli_query($db, $sql);
 		echo "<h2>{$tableName} Search Results</h2>";
-		print ("<table><tr>");
+		print ("<table class='highlight'><tr>");
 		while($field = mysqli_fetch_field($results)) {
 			print "<th> " . $field->name . "</th>";
 		}
@@ -115,10 +115,10 @@
 
 			if($mode == "remove") {
 				print ("<input type='hidden' value='s' name='update'> ");
-				print ("<input type='button' onclick='confirmChanges()' value='Remove'>");
+				print ("<button class='btn waves-effect waves-light' onclick='confirmChanges()'>Remove</button>");
 			} else if ($mode == "return") {
 				print ("<input type='hidden' value='a' name='update'> ");
-				print ("<input type='button' onclick='confirmChanges()' value='Return'>");
+				print ("<button class='btn waves-effect waves-light' onclick='confirmChanges()'>Return</button>");
 			}
 		}
 		print ("</form>");

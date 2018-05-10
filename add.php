@@ -94,7 +94,7 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
       if ((strpos($key, "ID")== true) || $dataType->type == 7 ){
         continue;
       } else {
-        print "<td class='addBox'><input type='text' id='$key' name='$key'></td>";
+        print "<td class='addBox'><input type='text' id='$key' name='$key' class='browser-default'></td>";
       }
 
     }
@@ -105,7 +105,7 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
     print "<input type='hidden' value='$txtInput' name='partNumber' />";
     print "<input type='hidden' value='$tableName' name='tableName' />";
     print "<input name='action' value='add' type='hidden' />";
-    print "<input type='button' class='btn' onclick='saveChanges()' value='Add Part' />";
+    print "<button class='btn waves-effect waves-light' onclick='saveChanges()'>Add Part</button>";
 print "</form>";
 
  ?>

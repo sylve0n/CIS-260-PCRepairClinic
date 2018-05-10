@@ -3,6 +3,11 @@ body {
   margin: auto;
   text-align: center;
 }
+/* general styles */
+.hidden{
+  display: none;
+}
+
 
 /*nav styles*/
 .nav-wrapper {
@@ -10,10 +15,13 @@ body {
   margin-bottom: 200px;
 }
 
+.brand-logo{
+  font-variant: small-caps;
+}
 /*icons*/
 .main-icons {
   margin: auto;
-  margin-top: 11em;
+  margin-top: 5em;
   text-align: center;
 }
 
@@ -29,6 +37,7 @@ body {
 .icons-text {
   font-weight: bold;
   color: #26669d;
+  font-variant: small-caps;
 }
 
 .icon-links:hover {
@@ -66,6 +75,10 @@ table{
 }
 .addBox input[type=text]{
   width: 90%!important;
+}
+
+button{
+  margin-top: 10px;
 }
 
 /* Barcode */
