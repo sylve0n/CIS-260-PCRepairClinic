@@ -1,3 +1,4 @@
+
 <?php
 
 	function clean_input($data){
@@ -38,8 +39,6 @@
 					$fieldNames = $rsNames['Field'];
 				} else {
 					$fieldNames = $fieldNames .", " . $rsNames['Field'];
-					//$fieldNames = $rsNames['Field'] . " " . $rsNames['Type'] . " / ";
-					//print($fieldNames);
 				}
 			}
 		}
@@ -73,8 +72,8 @@
 		$rowCount = $result->num_rows;
 
 		if ($rowCount < 1) {
-			
-			print "No records found.";
+			print ("<script>notFound();</script>");
+			//print "No records found.";
 			if ($mode == "add") {
 				include "add.php";
 			}
@@ -82,38 +81,41 @@
 			
 		} else if ($rowCount == 1 && $mode == "edit"){
 			
-			include "edit.php";
+			//include "edit.php";
+			
 		}
 
 		echo "<h2>{$tableName} Search Results</h2>";
-
+		print ("<table><tr>");
 		while($field = mysqli_fetch_field($result)) {
-			print $field->name . " ";
+			print "<th> " . $field->name . "</th>";
 		}
-		print "<br />";
+		print "<tr />";
+		print "<tr>";
 
 		while ($row = mysqli_fetch_assoc($result)){
 			foreach ($row as $value){
-				print ($value . " ");
+				print ("<td>" . $value . "</td>");
 			}
-			print "<br />";
+			print "</tr>";
 		}
+		print "</table><br />";
 
 		print ("<form method='get' id='frmRemove'>");
 
 		if ($rowCount == 1 ){
 			global $partID, $mode;
-			print ("<input type='text' value='{$tableName}' name='tableName'>");
-			print ("<input type='text' value='{$partID}' name='pid'>");
-			print ("<input type='text' value='{$txtInput}' name='txtInput'> ");
-			print ("<input type='text' name='mode' value='doRemove'>");
-			print ("<input type='text' name='type' value='bSearch'>");
+			print ("<input type='hidden' value='{$tableName}' name='tableName'>");
+			print ("<input type='hidden' value='{$partID}' name='pid'>");
+			print ("<input type='hidden' value='{$txtInput}' name='txtInput'> ");
+			print ("<input type='hidden' name='mode' value='doRemove'>");
+			print ("<input type='hidden' name='type' value='bSearch'>");
 
 			if($mode == "remove") {
-				print ("<input type='text' value='s' name='update'> ");
+				print ("<input type='hidden' value='s' name='update'> ");
 				print ("<input type='button' onclick='confirmChanges()' value='Remove'>");
 			} else if ($mode == "return") {
-				print ("<input type='text' value='a' name='update'> ");
+				print ("<input type='hidden' value='a' name='update'> ");
 				print ("<input type='button' onclick='confirmChanges()' value='Return'>");
 			}
 		}

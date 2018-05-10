@@ -3,29 +3,29 @@
 
 
   //check to see if the form was posted
-  // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // extract($_POST);
-    // $str = "Update {$tblName} SET ";
+    extract($_POST);
+    $str = "Update {$tblName} SET ";
 
-    // foreach ($_POST as $key => $value) {
-      // if($key != "tblName"){
-        // $str .=   "$key = '$value', ";
-      // }
-    // }
-    // $str = substr($str, 0, -2);
-    // $str .=    " Where PartID = '{$_POST['PartID']}'";
-    // //mysqli_query($db, $str);
-    // echo $str;
+    foreach ($_POST as $key => $value) {
+      if($key != "tblName"){
+        $str .=   "$key = '$value', ";
+      }
+    }
+    $str = substr($str, 0, -2);
+    $str .=    " Where PartID = '{$_POST['PartID']}'";
+    //mysqli_query($db, $str);
+    echo $str;
 
-    // //display the updated database
-    // $sql = "select * from $tblName";
-    // $qry = mysqli_query($db, $sql);
-    // $rs = mysqli_fetch_assoc($qry);
-    // foreach ($rs as $key => $value) {
-      // echo $key . ": " . $value . "<br />";
-    // }
-  // }
+    //display the updated database
+    $sql = "select * from $tblName";
+    $qry = mysqli_query($db, $sql);
+    $rs = mysqli_fetch_assoc($qry);
+    foreach ($rs as $key => $value) {
+      echo $key . ": " . $value . "<br />";
+    }
+  }
 
   global $txtInput;
   //global $partID;
@@ -59,6 +59,11 @@
 
   <?php
   $count=0;
+  $aryFieldNames = get_field_names($tableName);
+  print ("<table><tr>");
+  
+  
+  print ("</tr></table");
   foreach ($rsPart as $key => $value) {
       //get to see if the field data types 1 is tinyint and 7 is timestamp
       $dataType = mysqli_fetch_field_direct($query, $count);

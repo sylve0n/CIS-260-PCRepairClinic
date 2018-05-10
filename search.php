@@ -1,18 +1,27 @@
 <?php
+	session_start();
 	include "database.php";
 	include "functions.php";
 	include "global/imports.php";
+	if (isset($_GET['side'])){
+		if($_GET['side']=="net"){
+		
+			//include "global/net-header.php";
+			$_SESSION['side'] = "global/net-header.php";
 
-	if($_GET['side']=="net"){
-		include "global/net-header.php";
-
-	} else if($_GET['side']=="clinic"){
-		include "global/clinic-header.php";
+		} else if($_GET['side']=="clinic"){
+			//include "global/clinic-header.php";
+			$_SESSION['side'] = "global/clinic-header.php";
+		}
 	}
+	include $_SESSION['side'];
+
+	
+
 	
 ?>
 <script href="script.js"></script>
-<!-- <script>
+<script>
 //utilize a confirmation window to ensure changes are intended.
 	function saveChanges(){
 	  blnSave = confirm("Save Changes");
@@ -21,38 +30,30 @@
 	  }
 	}
 	function confirmChanges(){
-		
-	
 		ok = confirm("Save Changes?");
 		if (ok){
 			document.getElementById('frmRemove').submit();
 		}
 	}
-</script> -->
-<?php
-	if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	function resetForm(){
+		mode = document.getElementById('mode').value;
+		type = document.getElementById('type').value;
+		location.replace("search.php?mode=" + mode + "&type=" + type);
 		
-	    extract($_POST);
-	    $str = "Update {$tblName} SET ";
-
-	    foreach ($_POST as $key => $value) {
-		 if($key != "tblName"){
-		   $str .=   "$key = '$value', ";
-		 }
-	    }
-	    $str = substr($str, 0, -2);
-	    $str .=    " Where PartID = '{$_POST['PartID']}'";
-	    mysqli_query($db, $str);
-	    
-
-	    //display the updated database
-	    $sql = "select * from $tblName";
-	    $qry = mysqli_query($db, $sql);
-	    $rs = mysqli_fetch_assoc($qry);
-	    foreach ($rs as $key => $value) {
-		 echo $key . ": " . $value . "<br />";
-	    }
-	  }
+    
+	}
+	function notFound(){
+		part = confirm("No Records Found. OK to add, Cancel to Clear and search again");
+		if (part) {					
+		} else {
+			resetForm();
+		}
+	}
+</script>
+<?php
+	
+	
 
 	//Mode will determine what displays on the page.
 	//Mode is sent as a get request , query string in the URL
@@ -134,9 +135,10 @@
 	}
 
 	print("<input type='text' placeholder='{$placeHolder}' value='{$txtInput}' name='txtInput'/><br>");
-	print("<button class='btn waves-effect waves-light' type='submit'>Search</button><br>");
-	print("<input type='text' value='{$mode}' name='mode' class='browser-default'/><br>");
-	print("<input type='input' name='type' value='{$type}'/>");
+	print("<button class='btn waves-effect waves-light' type='submit'>Search</button> &nbsp;");
+	print("<input type='button' class='btn waves-effect waves-light' onclick='resetForm()' value='Clear'><br>");
+	print("<input type='hidden' id='mode' value='{$mode}' name='mode' class='browser-default'/><br>");
+	print("<input type='hidden' id='type' name='type' value='{$type}'/>");
 ?>
 </div>
 </form>
