@@ -71,21 +71,21 @@
 		$result = mysqli_query($db, $sql);
 		$rowCount = $result->num_rows;
 
-		if ($rowCount < 1) {
+		if (($rowCount < 1) && ($mode == "add")) {
 			print ("<script>notFound();</script>");
-			//print "No records found.";
 				if ($action != "add"){
 					include "add.php";
 					return;
 				}
-
-
 		} else if ($rowCount == 1 && $mode == "edit"){
 			if ($action != "save"){
 				include "edit.php";
 				return;
 			}
+		} else if ($rowCount < 1) {
+			print "No records found.";
 		}
+		
 		$results = mysqli_query($db, $sql);
 		echo "<h2>{$tableName} Search Results</h2>";
 		print ("<table class='highlight centered'><thead><tr>");
