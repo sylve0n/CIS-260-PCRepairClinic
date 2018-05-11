@@ -210,7 +210,7 @@
 
 	print("<input type='text' placeholder='{$placeHolder}' value='{$txtInput}' name='txtInput'/><br>");
 	print("<button class='btn waves-effect waves-light' type='submit'>Search</button> &nbsp;");
-	print("<button class='btn waves-effect waves-light' onclick='resetForm()'>Clear</button><br>");
+	print("<input type='button' class='btn waves-effect waves-light' onclick='resetForm()' value='Clear'><br>");
 	print("<input type='hidden' id='mode' value='{$mode}' name='mode' class='browser-default'/><br>");
 	print("<input type='hidden' id='type' name='type' value='{$type}'/>");
 ?>

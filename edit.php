@@ -100,5 +100,5 @@
  <input type="hidden" value="<?php echo $tableName?>" name="tblName">
  <input type="hidden" value="<?php echo $rsPart['PartID']?>" name="PartID">
  <input type="hidden" value="save" name="action" />
- <button class='btn waves-effect waves-light' onclick="saveChanges()">Save</button>
+ <input type="button" class="btn waves-effect waves-light" value="Save" onclick="saveChanges()"/> 
   </form>

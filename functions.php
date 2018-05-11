@@ -115,10 +115,10 @@
 
 			if($mode == "remove") {
 				print ("<input type='hidden' value='s' name='update'> ");
-				print ("<button class='btn waves-effect waves-light' onclick='confirmChanges()'>Remove</button>");
+				print ("<input type='button' class='btn waves-effect waves-light' onclick='confirmChanges()' value='Remove'>");
 			} else if ($mode == "return") {
 				print ("<input type='hidden' value='a' name='update'> ");
-				print ("<button class='btn waves-effect waves-light' onclick='confirmChanges()'>Return</button>");
+				print ("<input type='button' class='btn waves-effect waves-light' onclick='confirmChanges()' value='Return'>");
 			}
 		}
 		print ("</form>");
