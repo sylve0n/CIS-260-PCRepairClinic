@@ -105,7 +105,7 @@ $rsColumns = mysqli_fetch_assoc($qryColumns);
     print "<input type='hidden' value='$txtInput' name='partNumber' />";
     print "<input type='hidden' value='$tableName' name='tableName' />";
     print "<input name='action' value='add' type='hidden' />";
-    print "<input type='button' class='btn waves-effect waves-light' onclick='saveChanges()' value='Add Part' />";
+    print "<input type='button' class='btn waves-effect waves-light blue-grey' onclick='saveChanges()' value='Add Part' />";
 print "</form>";
 
  ?>

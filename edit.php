@@ -55,7 +55,7 @@
   $query = mysqli_query($db, $sql);
   $rsPart = mysqli_fetch_assoc($query);
   ?>
-  <h2><?php echo "Edit $txtInput"?></h2>
+  <h3><?php echo "Editing Part $txtInput"?></h3>
   <form method="post" id="frmPart">
 
 
@@ -100,5 +100,5 @@
  <input type="hidden" value="<?php echo $tableName?>" name="tblName">
  <input type="hidden" value="<?php echo $rsPart['PartID']?>" name="PartID">
  <input type="hidden" value="save" name="action" />
- <input type="button" class="btn waves-effect waves-light" value="Save" onclick="saveChanges()"/> 
+ <input type="button" class="btn waves-effect waves-light blue-grey" value="Save" onclick="saveChanges()"/> 
   </form>
